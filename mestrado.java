@@ -1,10 +1,10 @@
-public class mestrado extends Aluno{
-    public mestrado(int numAluno, String nomeAluno){
-        super(numAluno, nomeAluno);
+public class Mestrado extends Aluno{
+    public Mestrado(int NumAluno, String NomeAluno){
+        super(NumAluno, NomeAluno);
         }
 
         @Override
         public String toString(){
-            return //
+            //return 
         }
     }
