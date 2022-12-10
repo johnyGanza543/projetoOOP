@@ -1,30 +1,29 @@
 public class Aluno {
-    protected int numAluno;
-    protected String nomeAluno;
+    protected int NumAluno;
+    protected String NomeAluno;
 
-    public Aluno(int numAluno, String nomeAluno){
-        this.numAluno = numAluno;
-        this.nomeAluno = nomeAluno;
+    public Aluno(int NumAluno, String NomeAluno){
+        this.NumAluno = NumAluno;
+        this.NomeAluno = NomeAluno;
     }
 
 
-    public int getnumAluno(){
-        return numAluno;
+    public int getNumAluno(){
+        return NumAluno;
     }
-    public void setnumAluno(){
-        this numAluno = numAluno;
+    public void setNumAluno(int NumAluno){
+        this.NumAluno = NumAluno;
     }
 
-    public String getnomeAluno(){
-        return nomeAluno;
+    public String getNomeAluno(){
+        return NomeAluno;
     }
-    public String setnomeAluno(){
-        this.nomeAluno = nomeAluno;
+    public void setNomeAluno(String NomeAluno){
+        this.NomeAluno = NomeAluno;
     }
 
     @Override
     public String toString(){
-        //return//
+        return "" +NumAluno+ "  " +NomeAluno;
     }
 }
-
