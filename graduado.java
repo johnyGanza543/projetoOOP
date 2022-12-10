@@ -1,24 +1,24 @@
-public class graduado extends Aluno {
-    protected Double primeiroTeste, segundoTeste;
+public class Graduado extends Aluno {
+    protected Double PrimeiroTeste, SegundoTeste;
 
-    public graduado (int numAluno, String nomeAluno){
-        super(numAluno, nomeAluno);
-        this.primeiroTeste = primeiroTeste;
-        this.segundoTeste = segundoTeste;
-    }
-
-    public int getprimeiroTeste(){
-        return primeiroTeste;
-    }
-    public void setprimeiroTeste(int primeiroTeste){
-        this.primeiroTeste = primeiroTeste;
+    public Graduado (int NumAluno, String NomeAluno){
+        super(NumAluno, NomeAluno);
+        this.PrimeiroTeste = PrimeiroTeste;
+        this.SegundoTeste = SegundoTeste;
     }
 
-    public int getsegundoTeste(){
-        return primeiroTeste;
+    public Double getPrimeiroTeste(){
+        return PrimeiroTeste;
     }
-    public void setsegundoTeste(int segundoTeste){
-        this.segundoTeste = segundoTeste;
+    public void setPrimeiroTeste(Double PrimeiroTeste){
+        this.PrimeiroTeste = PrimeiroTeste;
+    }
+
+    public Double getSegundoTeste(){
+        return SegundoTeste;
+    }
+    public void setSegundoTeste(Double SegundoTeste){
+        this.SegundoTeste = SegundoTeste;
     }
 
     @Override
