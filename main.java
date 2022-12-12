@@ -1,87 +1,119 @@
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.List;
+package Projeto2;
+
 import java.util.Scanner;
-import java.io.BufferedReader;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Scanner scMenu = new Scanner(System.in);
-        String LerFicheiro = "alunos.txt";
+    public static void main(String[] args) {
+        try (Scanner scMenu = new Scanner(System.in)) {
+            Mestrado MestradoLista[] = new Mestrado[3];
+            MestradoLista[0] = new Mestrado(13405, "Rui Fonte");
+            MestradoLista[1] = new Mestrado(13589, "Tiago Gomes");
+            MestradoLista[2] = new Mestrado(13732, "Joana Santos");
 
-        BufferedReader br = new BufferedReader(new FileReader(LerFicheiro));
-        
-        Graduado GraduadoLista[] = new Graduado[10];
-        Mestrado MestradoLista[] = new Mestrado[10];
+            Graduado GraduadoLista[] = new Graduado[3];
+            GraduadoLista[0] = new Graduado(14653, "Diogo Sousa", 12.3, 13.5);
+            GraduadoLista[1] = new Graduado(13248, "Edgar Martins", 17.0, 13.8);
+            GraduadoLista[2] = new Graduado(13674, "José Carlos", 12.0, 12.7);
 
-        int exit = 0;
-        do {
-            System.out.println("\n## Menu (Escolha uma opcao) ##");
-            System.out.println("\n[1] Ver lista de alunos");
-            System.out.println("[2] Adicionar um novo aluno");
-            System.out.println("[3] Sair");
-            int MenuOpcao = scMenu.nextInt();
+            int exit = 0;
+            do {
+                System.out.println("\n## Menu (Escolha uma opcao) ##");
+                System.out.println("\n[1] Ver lista de alunos");
+                System.out.println("[2] Adicionar um novo aluno");
+                System.out.println("[3] Sair");
+                int MenuOpcao = scMenu.nextInt();
 
-            switch (MenuOpcao){
-                case 1:
-                    //Ver a lista dos alunos
-                    break;
+                switch (MenuOpcao){
+                    case 1:
+                        //Ver a lista dos alunos
+                        System.out.print("\n\n------------------------------------------");
+                        System.out.print("\nNotas dos alunos de Programação 2022/2023");
+                        System.out.print("\nProfa. Valéria Pequeno");
+                        System.out.print("\n------------------------------------------\n");
 
-                case 2:
-                    //Adicionar um novo aluno (graduado/mestrado)
-                    Scanner scAdiciona = new Scanner(System.in);
-                    System.out.print("Nº do aluno? ");
-                    int NumAluno = scAdiciona.nextInt();
+                        PrintGraduadoLista(GraduadoLista);
 
+                        break;
 
-                    break;
-                case 3:
-                    exit = 3;
-                    break;
-            }
-        } while (exit != 3);
+                    case 2:
+                        //Adicionar um novo aluno (graduado/mestrado)
+                        Scanner scTipo = new Scanner(System.in);
+                        int Tipo = 0;
+                        //System.out.print("\033[H\033[2J");  
+                        //System.out.flush();  
+                        
+                        MenuOpcao = 0;
+                        Scanner scAdiciona = new Scanner(System.in);
+                        System.out.print("Nº do aluno? ");
+                        int NumAluno = scAdiciona.nextInt();
+                        System.out.println("Nome do aluno? ");
+                        String NomeAluno = scAdiciona.nextLine();
+                        //System.out.print("\033[H\033[2J");  
+                        //System.out.flush();   
+
+                        boolean TipoCorreto = false;
+                        while (!TipoCorreto){
+                            System.out.println("\n[1] Graduado\n[2] Mestrado");
+                            if (scTipo.hasNextInt()){
+                                Tipo = scTipo.nextInt();
+                                if (Tipo == 1 || Tipo == 2)
+                                     TipoCorreto = true;
+                                else {
+                                    System.out.println();
+                                    System.out.println("Valor inserido inválido");
+                                }
+                            }
+                        }
+
+                        //Graduado
+                        if (Tipo == 1){
+                            GraduadoLista = AddGraduadoLista(GraduadoLista);
+                            Double PrimeiroTeste = 0.0;
+                            Double SegundoTeste = 0.0;
+
+                            Scanner scTestes = new Scanner(System.in);
+                            System.out.print("Nota do 1º teste? ");
+                            PrimeiroTeste = scTestes.nextDouble();
+
+                            System.out.print("Nota do 2º teste? ");
+                            SegundoTeste = scTestes.nextDouble();
+
+                            System.out.print("Média"+médiaTestes(PrimeiroTeste, SegundoTeste));
+                            GraduadoLista[0] = new Graduado(NumAluno, NomeAluno, PrimeiroTeste, SegundoTeste);
+                        }
+                        
+                        break;
+
+                    case 3:
+                        exit = 3;
+                        break;
+                }
+            } while (exit != 3);
+        }
+    }
+
+    public static double médiaTestes(double PrimeiroTeste, double SegundoTeste) {
+        double Soma, Média;
+        Soma = PrimeiroTeste + SegundoTeste;
+        Média = Soma / 2;
+        return Média;
     }
 
     //Print da lista de graduado/mestrado
-    public static void printGraduadoLista(Graduado Graduado[]){
+    public static void PrintGraduadoLista(Graduado Graduado[]) {
         for (int i = 0; i < Graduado.length; i++) {
             System.out.println(Graduado[i].toString());
         }
-    }
-    public static void printMestradoLista(Mestrado Mestrado[]){
-        for (int i = 0; i < Mestrado.length; i++) {
-            System.out.println(Mestrado[i].toString());
-        }
+        System.out.println();
     }
 
-    //Adicionar um novo graduado/mestrado
-    static Graduado[] NovaLinhaGraduado(Graduado NovoGraduado[]) { 
-        Graduado Graduado[] = new Graduado[NovoGraduado.length + 1];
-        for (int i = 0; i < NovoGraduado.length; i++) {
-            Graduado[i + 1] = NovoGraduado[i];
+    //Adicionar um novo graduado
+    static Graduado[] AddGraduadoLista(Graduado GraduadoEntrada[]) {
+        Graduado Graduado[] = new Graduado[GraduadoEntrada.length + 1];
+        for (int i = 0; i < GraduadoEntrada.length; i++) {
+            Graduado[i + 1] = GraduadoEntrada[i];
         }
         return Graduado;
     }
-    static Mestrado[] NovaLinhaMestrado(Mestrado NovoMestrado[]) { 
-        Mestrado Mestrado[] = new Mestrado[NovoMestrado.length + 1];
-        for (int i = 0; i < NovoMestrado.length; i++) {
-            Mestrado[i + 1] = NovoMestrado[i];
-        }
-        return Mestrado;
-    }
 
-    //Função para calcular a média do novo aluno
-    public class MediaNovoAluno {
-        public static void main(String[] args) {
-            Double SomaTestes = 0.0;
-            Double Media = 0.0;
-
-            SomaTestes = PrimeiroTeste + SegundoTeste;
-            Media = SomaTestes / 2;
-
-
-        }
-    }
 }
