@@ -1,11 +1,13 @@
-public class Graduado extends Aluno {
-    protected Double PrimeiroTeste, SegundoTeste;
+package Projeto2;
 
-    public Graduado (int NumAluno, String NomeAluno){
+public class Graduado extends Aluno {
+    public Graduado(int NumAluno, String NomeAluno, double PrimeiroTeste, double SegundoTeste) {
         super(NumAluno, NomeAluno);
         this.PrimeiroTeste = PrimeiroTeste;
         this.SegundoTeste = SegundoTeste;
     }
+    
+    protected Double PrimeiroTeste, SegundoTeste;
 
     public Double getPrimeiroTeste(){
         return PrimeiroTeste;
@@ -20,9 +22,11 @@ public class Graduado extends Aluno {
     public void setSegundoTeste(Double SegundoTeste){
         this.SegundoTeste = SegundoTeste;
     }
-
+    
+    
     @Override
     public String toString(){
-        return // 
+        return "" +super.toString()+ " " +(PrimeiroTeste+SegundoTeste);
+        
     }
 }
