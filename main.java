@@ -30,8 +30,13 @@ public class Main {
                         System.out.print("\nNotas dos alunos de Programação 2022/2023");
                         System.out.print("\nProfa. Valéria Pequeno");
                         System.out.print("\n------------------------------------------\n");
-
                         PrintGraduadoLista(GraduadoLista);
+                        System.out.print("------------------------------------------\n");
+
+                        int count = 0;
+                        count = GraduadoLista.length;
+                        System.out.print("Total de alunos: " + count);
+                        System.out.print("\tMédia da turma: \n");
 
                         break;
 
@@ -43,11 +48,13 @@ public class Main {
                         //System.out.flush();  
                         
                         MenuOpcao = 0;
-                        Scanner scAdiciona = new Scanner(System.in);
+                        Scanner scAdicionaNum = new Scanner(System.in);
                         System.out.print("Nº do aluno? ");
-                        int NumAluno = scAdiciona.nextInt();
-                        System.out.println("Nome do aluno? ");
-                        String NomeAluno = scAdiciona.nextLine();
+                        int NumAluno = scAdicionaNum.nextInt();
+
+                        Scanner scAdicionaNom = new Scanner(System.in);
+                        System.out.print("Nome do aluno? ");
+                        String NomeAluno = scAdicionaNom.nextLine();
                         //System.out.print("\033[H\033[2J");  
                         //System.out.flush();   
 
@@ -78,7 +85,6 @@ public class Main {
                             System.out.print("Nota do 2º teste? ");
                             SegundoTeste = scTestes.nextDouble();
 
-                            System.out.print("Média"+médiaTestes(PrimeiroTeste, SegundoTeste));
                             GraduadoLista[0] = new Graduado(NumAluno, NomeAluno, PrimeiroTeste, SegundoTeste);
                         }
                         
@@ -92,19 +98,16 @@ public class Main {
         }
     }
 
-    public static double médiaTestes(double PrimeiroTeste, double SegundoTeste) {
-        double Soma, Média;
-        Soma = PrimeiroTeste + SegundoTeste;
-        Média = Soma / 2;
-        return Média;
-    }
+    //Calcular o total de alunos (graduados)
+    //int count = GraduadoLista.length;
+  
 
     //Print da lista de graduado/mestrado
     public static void PrintGraduadoLista(Graduado Graduado[]) {
         for (int i = 0; i < Graduado.length; i++) {
             System.out.println(Graduado[i].toString());
         }
-        System.out.println();
+    
     }
 
     //Adicionar um novo graduado
@@ -115,5 +118,4 @@ public class Main {
         }
         return Graduado;
     }
-
 }
