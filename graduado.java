@@ -26,7 +26,7 @@ public class Graduado extends Aluno {
     
     @Override
     public String toString(){
-        return "" +super.toString()+ " " +(PrimeiroTeste+SegundoTeste);
+        return "" +super.toString()+ " " +((PrimeiroTeste+SegundoTeste)/2.0);
         
     }
 }
